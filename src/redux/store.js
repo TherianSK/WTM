@@ -1,18 +1,21 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import ReduxThunk from 'redux-thunk';
 
-import loginReducer from './reducers/loginReducer';
+import client from './client';
+
+import userReducer from './reducers/userReducer';
 import drawerReducer from './reducers/drawerReducer';
-import taskReducer from './reducers/taskReducer';
+
 
 const reducers = combineReducers({
-    login:loginReducer,
+    apollo: client.reducer(),
     drawer:drawerReducer,
-    taskData:taskReducer,
+    user:userReducer
   });
 
 const enhancers = compose(
   applyMiddleware(ReduxThunk),
+  applyMiddleware(client.middleware()),
 );
 
 export default () => createStore(reducers, {}, enhancers);
