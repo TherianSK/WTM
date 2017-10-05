@@ -11,8 +11,9 @@ export const loginUser = (email, password, client) => {
       variables: { email, password }
     }).then(
       (loggedUserData)=>{
-        console.log(loggedUserData);
-      })
+        dispatch({type:LOGIN_SUCCESS,user:loggedUserData.data.signinUser.user,token:loggedUserData.data.signinUser.token});
+      }).catch(()=>{
 
+      });
   };
 };

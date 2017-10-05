@@ -11,7 +11,7 @@ export default function drawerReducer(state = initialState, action) {
     case LOGIN_START:
       return { ...state, loading: true };
     case LOGIN_SUCCESS:
-      return { ...state, loading: false, token: action.token, user: action.user  };
+        return { ...state, loading: false, token: action.token, user: action.user };
     case LOGIN_FAIL:
       return { ...state, loading: false, token: null, user: null  };
     default:

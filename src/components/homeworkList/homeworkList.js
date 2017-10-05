@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   Table,
@@ -14,9 +13,6 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import Popover from 'material-ui/Popover';
 
-import {getTasks} from '../../redux/actions';
-import {formatDate} from '../helperFunctions';
-
 class TaskList extends Component {
   constructor(props) {
     super(props);
@@ -26,14 +22,11 @@ class TaskList extends Component {
     };
   }
 
-  componentWillMount(){
-    this.props.getTasks();
-  }
   render() {
-    console.log(this.context.router);
-    if(this.props.loadingData){
+    if(this.props.loadingHomeworks){
       return (<div>Loading...</div>);
     }
+
     return (
       <div>
         <div style={{borderBottom: 'thick solid black',borderWidth:1,marginBottom:10}}>
@@ -47,38 +40,28 @@ class TaskList extends Component {
           targetOrigin={{horizontal: 'left', vertical: 'top'}}
           onRequestClose={()=>{this.setState({bulkOpen:false})}}>
           <Menu>
-            <MenuItem primaryText="Refresh all tasks" onClick={()=>{this.setState({bulkOpen:false});this.props.getTasks();}} />
+            <MenuItem primaryText="Refresh all" />
           </Menu>
         </Popover>
 
         <RaisedButton label="DELETE" labelColor='#FFF' backgroundColor='red' />
         <RaisedButton label="BULK ACTIONS" labelColor='#FFF' backgroundColor='#81C0FA' style={{marginLeft:15}} onClick={(event)=>{event.preventDefault();this.setState({bulkOpen: true,bulkPosition: event.currentTarget});}} />
-        <RaisedButton style={{float:'right'}} label="EDIT PROJECT" labelColor='#FFF' backgroundColor='green' onClick={()=>this.props.history.push('/project/edit/1')} />
+        <RaisedButton style={{float:'right'}} label="EDIT STUFF" labelColor='#FFF' backgroundColor='green' />
         {
           this.props.loadingData?<div>Loading...</div>:
         <Table multiSelectable={true}>
           <TableHeader>
             <TableRow>
               <TableHeaderColumn>Title</TableHeaderColumn>
-              <TableHeaderColumn>Requested by</TableHeaderColumn>
-              <TableHeaderColumn>Company</TableHeaderColumn>
-              <TableHeaderColumn>Assigned to</TableHeaderColumn>
-              <TableHeaderColumn>Created at</TableHeaderColumn>
-              <TableHeaderColumn>Deadline</TableHeaderColumn>
-              <TableHeaderColumn>Status</TableHeaderColumn>
+              <TableHeaderColumn>Description</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody>
             {
-              this.props.tasks.map((task)=>(
-            <TableRow key={task.id}>
-              <TableRowColumn><Link style={{textDecoration:'none',fontSize:15}} to={ `/task/edit/${task.id}` }>{task.title}</Link></TableRowColumn>
-              <TableRowColumn>{task.requestedBy.name}</TableRowColumn>
-              <TableRowColumn>{task.company.title}</TableRowColumn>
-              <TableRowColumn>{task.assignedTo.name}</TableRowColumn>
-              <TableRowColumn>{formatDate(task.createdAt)}</TableRowColumn>
-              <TableRowColumn>{formatDate(task.deadline)}</TableRowColumn>
-              <TableRowColumn>{task.status.title}</TableRowColumn>
+              this.props.homeworks.map((homework)=>(
+            <TableRow key={homework.id}>
+              <TableRowColumn><Link style={{textDecoration:'none',fontSize:15}} to={ `/homework/s/${homework.id}` }>{homework.title}</Link></TableRowColumn>
+              <TableRowColumn>{homework.description}</TableRowColumn>
             </TableRow>)
               )
             }
@@ -90,10 +73,4 @@ class TaskList extends Component {
   }
 }
 
-const mapStateToProps = ({taskData,login}) => {
-  const {loadingData,tasks} = taskData;
-  const {ACL} = login;
-  return {tasks,loadingData};
-};
-
-export default connect(mapStateToProps,{getTasks})(TaskList);
+export default TaskList;
