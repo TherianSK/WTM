@@ -1,15 +1,14 @@
 import React, { Component } from "react";
+
 import AppBar from "material-ui/AppBar";
 import Drawer from "material-ui/Drawer";
 import { connect } from "react-redux";
 import IconButton from "material-ui/IconButton";
-import SettingsIcon from "material-ui/svg-icons/action/settings";
 import LogOut from "material-ui/svg-icons/action/power-settings-new";
 import { white } from "material-ui/styles/colors";
-import { Link } from "react-router-dom";
 
-import { openDrawer, closeDrawer } from "../../redux/actions";
-import SidebarContent from "./sidebarLoader";
+import { openDrawer, closeDrawer } from "../../../redux/actions";
+import SidebarContent from "./sidebar";
 
 
 class Sidebar extends Component {
@@ -24,14 +23,9 @@ class Sidebar extends Component {
           }}
           iconElementRight={
             <span>
-              <IconButton>
-                <Link to="/settings">
-                  <SettingsIcon color={white} />
-                </Link>
-              </IconButton>
-              <IconButton>
-                <LogOut color={white} onClick={this.props.logoutUser} />
-              </IconButton>
+            <IconButton>
+              <LogOut color={white} onClick={this.props.logoutUser} />
+            </IconButton>
             </span>
           }
           onLeftIconButtonTouchTap={

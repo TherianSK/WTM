@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
 import 'typeface-roboto';
 import createStore from './redux/store';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -19,5 +18,4 @@ const App = () =>
   </ApolloProvider>);
 
 ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
 export default App;
