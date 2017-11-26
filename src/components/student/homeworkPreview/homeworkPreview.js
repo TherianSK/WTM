@@ -18,7 +18,7 @@ class HomeworkPreview extends Component {
     if(this.props.loadingHomeworks){
       return (<div>Loading...</div>);
     }
-    let cantComment=this.props.homework.comments.some((comment)=>comment.user.id==this.props.user.id);
+    let cantComment=this.props.homework.comments.some((comment)=>comment.user.id===this.props.user.id);
     return (
       <div>
         <h1>Homework preview - {this.props.homework.title}</h1>

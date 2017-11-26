@@ -29,7 +29,7 @@ class Sidebar extends Component {
             <MenuItem key={course.id} leftIcon={<ProjectIcon />} onClick={()=>{
                 let homeworks=[];
                 this.props.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
-                homeworks=homeworks.filter((homework)=>homework.course.id==course.id);
+                homeworks=homeworks.filter((homework)=>homework.course.id===course.id);
                 homeworks.sort((item1,item2)=>item1.deadline>item2.deadline);
                 this.props.setHomeworks(homeworks,course.title);
                 this.props.history.push('/');
