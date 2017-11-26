@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Checkbox from 'material-ui/Checkbox';
 import {loginUser,registerUser} from '../../redux/actions';
 import StudentNavigation from './../student/navigation';
+import TeacherNavigation from './../teacher/navigation';
 
 class Login extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Login extends Component {
     if(this.props.token && this.props.user){
       if(this.props.user.isTeacher){
         return (
-          <StudentNavigation/>
+          <TeacherNavigation/>
         );
       }
       return (

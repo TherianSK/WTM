@@ -8,6 +8,23 @@ mutation ($email: String!, $password: String!) {
 			id
 			email
 			isTeacher
+			teaching{
+				id
+				title
+				homeworks{
+					id
+					title
+					deadline
+					expectedDifficulty
+					expectedWorkTime
+					points
+					startsAt
+					course{
+						id
+						title
+					}
+				}
+			}
 			courses{
 				id
 				title

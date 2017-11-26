@@ -14,7 +14,7 @@ export const loginUser = (email, password, client) => {
         dispatch({type:LOGIN_SUCCESS,
           user:{id:loggedUserData.data.signinUser.user.id,email:loggedUserData.data.signinUser.user.email,isTeacher:loggedUserData.data.signinUser.user.isTeacher},
           token:loggedUserData.data.signinUser.token,
-          courses:loggedUserData.data.signinUser.user.courses});
+          courses:loggedUserData.data.signinUser.user.isTeacher?loggedUserData.data.signinUser.user.teaching:loggedUserData.data.signinUser.user.courses});
           let token =loggedUserData.data.signinUser.token;
           if (typeof client.networkInterface.use === 'function') {
             client.networkInterface.use(
