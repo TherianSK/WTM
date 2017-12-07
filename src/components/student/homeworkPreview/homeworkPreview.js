@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import FlatButton from 'material-ui/FlatButton';
+import Slider from 'material-ui/Slider';
 import { connect } from 'react-redux';
 import {comment} from '../../../redux/actions';
 import { withApollo } from 'react-apollo';
@@ -10,6 +11,7 @@ class HomeworkPreview extends Component {
     super(props);
     this.state={
       comment:'',
+      score:2,
       send:false
     }
   }
@@ -18,7 +20,7 @@ class HomeworkPreview extends Component {
     if(this.props.loadingHomeworks){
       return (<div>Loading...</div>);
     }
-    let cantComment=this.props.homework.comments.some((comment)=>comment.user.id===this.props.user.id);
+    let cantComment=this.props.homework.comments.some((comment)=>comment.user&&comment.user.id===this.props.user.id);
     return (
       <div>
         <h1>Homework preview - {this.props.homework.title}</h1>
@@ -109,25 +111,33 @@ class HomeworkPreview extends Component {
               value={this.state.comment}
               onChange={(event,value)=>this.setState({comment:value})}
               />
-
+            <h4>Score: {this.state.score==0?'no starts':(this.state.score==1?'one star':this.state.score+' stars')} !</h4>
+              <Slider
+                min={0}
+                max={5}
+                step={1}
+                value={this.state.score}
+                style={{width:250}}
+                onChange={(event,value)=>this.setState({score:value})}
+                />
             <FlatButton
               label={"Send"}
               primary={true}
               disabled={cantComment||this.state.send}
               style={{marginTop:10}}
               fullWidth={true}
-              onClick={()=>{this.setState({send:true});this.props.comment(this.state.comment,this.props.user.id,this.props.homework.id,this.props.client)}} />
+              onClick={()=>{this.setState({send:true});this.props.comment(this.state.comment,this.props.user.id,this.props.homework.id,this.props.client,this.state.score)}} />
           </div>
         }
         {
           this.state.send && <h3>Your comment has been submitted!</h3>
-        }
-        {
-          cantComment && <h3>You have already commented on this homework!</h3>
-        }
-      </div>
-    );
-  }
+      }
+      {
+        cantComment && <h3>You have already commented on this homework!</h3>
+    }
+  </div>
+);
+}
 }
 
 const mapStateToProps = ({ user }) => {

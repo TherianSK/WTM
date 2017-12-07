@@ -21,11 +21,11 @@ export const setHistory = (history) => {
   }
 }
 
-export const comment = (comment,userId,homeworkId,client) => {
+export const comment = (comment,userId,homeworkId,client,rating) => {
   return (dispatch) => {
     client.mutate({
       mutation: addComment,
-      variables: { body:comment, userId,homeworkId}
+      variables: { body:comment, userId,homeworkId,rating}
     }).then(()=>{
       client.query({
         query: data,

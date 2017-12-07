@@ -22,7 +22,7 @@ class TaskList extends Component {
         <div style={{borderBottom: 'thick solid black',borderWidth:1,marginBottom:10}}>
           <h2>{this.props.taskListTitle}</h2>
         </div>
-        <Table multiSelectable={true}>
+        <Table multiSelectable={true} style={{tableLayout: 'auto'}}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn>Title</TableHeaderColumn>
@@ -39,7 +39,7 @@ class TaskList extends Component {
               this.props.homeworks.map((homework)=>(
                 <TableRow key={homework.id}>
                   <TableRowColumn><Link style={{textDecoration:'none',fontSize:15}} to={ `/homework/p/${homework.id}` }>{homework.title}</Link></TableRowColumn>
-                  <TableRowColumn>{homework.deadline}</TableRowColumn>
+                  <TableRowColumn style={{overflowX:'none'}}>{homework.deadline}</TableRowColumn>
                   <TableRowColumn>{homework.course.title}</TableRowColumn>
                   <TableRowColumn>{homework.expectedDifficulty}</TableRowColumn>
                   <TableRowColumn>{homework.expectedWorkTime}</TableRowColumn>

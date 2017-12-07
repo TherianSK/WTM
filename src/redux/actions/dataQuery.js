@@ -2,11 +2,12 @@
 import gql from 'graphql-tag';
 
 export const addComment = gql`
-mutation createComment($body: String!,$userId: ID!,$homeworkId: ID!) {
+mutation createComment($body: String!,$userId: ID!,$homeworkId: ID!,$rating:Int!) {
 	createComment(
 		body:$body,
 		homeworkId: $homeworkId,
 		userId: $userId,
+		rating:$rating,
 	) {
 		id
 	}
