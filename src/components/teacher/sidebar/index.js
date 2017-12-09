@@ -7,12 +7,28 @@ import IconButton from "material-ui/IconButton";
 import LogOut from "material-ui/svg-icons/action/power-settings-new";
 import { white } from "material-ui/styles/colors";
 
-import { openDrawer, closeDrawer } from "../../../redux/actions";
-import SidebarContent from "./sidebar";
-
+import { graphql } from 'react-apollo';
+import { openDrawer, closeDrawer, logoutUser } from "../../../redux/actions";
+import SidebarContent from "./sidebarLoader";
+import {courses} from './query';
 
 class Sidebar extends Component {
   render() {
+    const withCourses = graphql(courses, {
+      options:{
+        variables:{
+          userId:this.props.user.id,
+        },
+      },
+      props: ({ data: { loading, allCourses, error, refetch, subscribeToMore } }) => ({
+        loading,
+        courses:allCourses,
+        error,
+        refetch,
+        subscribeToMore,
+      }),
+    });
+    let Sidebar = withCourses(SidebarContent);
     return (
       <div className="App">
         <AppBar
@@ -33,16 +49,16 @@ class Sidebar extends Component {
           }
         />
         <Drawer open={this.props.opened} docked={true}>
-          <SidebarContent />
+          <Sidebar />
         </Drawer>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ drawer }) => {
+const mapStateToProps = ({ drawer, user }) => {
   const { opened } = drawer;
-  return { opened };
+  return { opened , user:user.user};
 };
 
-export default connect(mapStateToProps, {openDrawer,closeDrawer})(Sidebar);
+export default connect(mapStateToProps, {openDrawer,closeDrawer,logoutUser})(Sidebar);

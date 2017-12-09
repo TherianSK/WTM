@@ -1,4 +1,4 @@
-import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL, REGISTRATION_FAIL, REGISTRATION_SUCCESS, SET_HOMEWORKS } from '../types';
+import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL, REGISTRATION_FAIL, REGISTRATION_SUCCESS, SET_HOMEWORKS, LOGOUT } from '../types';
 //import { graphql } from 'react-apollo';
 import { signinUser, register } from './loginQuery';
 
@@ -30,11 +30,17 @@ export const loginUser = (email, password, client) => {
                 }
               ]
             );
-          } else {
+          }
+          else {
             client.networkInterface.__accessToken = token;
           }
           let homeworks=[];
-          loggedUserData.data.signinUser.user.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
+          if(loggedUserData.data.signinUser.user.isTeacher){
+            loggedUserData.data.signinUser.user.teaching.map((course)=>homeworks=homeworks.concat(course.homeworks));
+          }
+          else{
+            loggedUserData.data.signinUser.user.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
+          }
           homeworks.sort((item1,item2)=>item1.deadline>item2.deadline);
           dispatch({type:SET_HOMEWORKS,name:'Deadlines',homeworks});
         }).catch((error)=>{
@@ -58,3 +64,9 @@ export const loginUser = (email, password, client) => {
           });
         };
       };
+
+      export const logoutUser = () => {
+        return (dispatch) => {
+          dispatch({type:LOGOUT});
+        };
+      }

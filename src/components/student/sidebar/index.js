@@ -7,7 +7,7 @@ import IconButton from "material-ui/IconButton";
 import LogOut from "material-ui/svg-icons/action/power-settings-new";
 import { white } from "material-ui/styles/colors";
 
-import { openDrawer, closeDrawer } from "../../../redux/actions";
+import { openDrawer, closeDrawer,logoutUser } from "../../../redux/actions";
 import SidebarContent from "./sidebar";
 
 
@@ -45,4 +45,4 @@ const mapStateToProps = ({ drawer }) => {
   return { opened };
 };
 
-export default connect(mapStateToProps, {openDrawer,closeDrawer})(Sidebar);
+export default connect(mapStateToProps, {openDrawer,closeDrawer,logoutUser})(Sidebar);

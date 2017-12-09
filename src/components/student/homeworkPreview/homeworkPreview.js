@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import FlatButton from 'material-ui/FlatButton';
 import Slider from 'material-ui/Slider';
+import Paper from 'material-ui/Paper';
 import { connect } from 'react-redux';
 import {comment} from '../../../redux/actions';
 import { withApollo } from 'react-apollo';
@@ -12,6 +13,8 @@ class HomeworkPreview extends Component {
     this.state={
       comment:'',
       score:2,
+      difficulty:2,
+      worktime:0,
       send:false
     }
   }
@@ -101,33 +104,53 @@ class HomeworkPreview extends Component {
         }
         {
           !cantComment&&!this.state.send&&
-          <div>
-            <h3>Comment this homework</h3>
+          <Paper style={{margin:25,padding:10}} zDepth={2}>
+            <h2>Comment and rate this homework</h2>
+              <h4>Comment</h4>
             <TextField
               fullWidth={true}
               floatingLabelFixed={true}
               multiLine={true}
               disabled={cantComment||this.state.send}
               value={this.state.comment}
+              floatingLabelText="Comment here"
               onChange={(event,value)=>this.setState({comment:value})}
               />
-            <h4>Score: {this.state.score==0?'no starts':(this.state.score==1?'one star':this.state.score+' stars')} !</h4>
-              <Slider
-                min={0}
-                max={5}
-                step={1}
-                value={this.state.score}
-                style={{width:250}}
-                onChange={(event,value)=>this.setState({score:value})}
-                />
+            <h4>Score: {this.state.score===0?'no starts':(this.state.score===1?'one star':this.state.score+' stars')} !</h4>
+            <Slider
+              min={0}
+              max={5}
+              step={1}
+              value={this.state.score}
+              style={{width:250}}
+              onChange={(event,value)=>this.setState({score:value})}
+              />
+            <h4>Homework difficulty: {this.state.difficulty}!</h4>
+            <Slider
+              min={0}
+              max={10}
+              step={1}
+              value={this.state.difficulty}
+              style={{width:250}}
+              onChange={(event,value)=>this.setState({difficulty:value})}
+              />
+            <h4>Work time</h4>
+            <TextField
+              fullWidth={true}
+              floatingLabelFixed={true}
+              value={this.state.worktime}
+              label="Time spend (in hours)"
+              type="number"
+              onChange={(event,value)=>this.setState({worktime:value})}
+              />
             <FlatButton
               label={"Send"}
               primary={true}
               disabled={cantComment||this.state.send}
               style={{marginTop:10}}
               fullWidth={true}
-              onClick={()=>{this.setState({send:true});this.props.comment(this.state.comment,this.props.user.id,this.props.homework.id,this.props.client,this.state.score)}} />
-          </div>
+              onClick={()=>{this.setState({send:true});this.props.comment(this.state.comment,this.props.user.id,this.props.homework.id,this.props.client,this.state.score,this.state.difficulty,this.state.worktime===''?0:parseFloat(this.state.worktime))}} />
+          </Paper>
         }
         {
           this.state.send && <h3>Your comment has been submitted!</h3>

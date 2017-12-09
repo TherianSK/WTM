@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Sidebar from "./sidebar";
 import HomeworkList from "./homeworkList";
 import HomeworkPreview from "./homeworkPreview";
+import NotFound from "../404";
 
 class Navigation extends Component {
   render() {
@@ -14,8 +15,9 @@ class Navigation extends Component {
           <Sidebar />
           <div style={{ paddingLeft: this.props.opened ? 256 : 0 }}>
             <Switch>
-            <Route exact path="/" component={HomeworkList} />
-            <Route path="/homework/p/:id" component={HomeworkPreview} />
+              <Route exact path="/" component={HomeworkList} />
+              <Route path="/homework/p/:id" component={HomeworkPreview} />
+              <Route path="/" component={NotFound} />
             </Switch>
           </div>
         </div>

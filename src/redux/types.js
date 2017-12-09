@@ -5,6 +5,7 @@ export const REGISTRATION_FAIL = 'REGISTRATION_FAIL';
 export const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS';
 export const SET_HOMEWORKS = 'SET_HOMEWORKS';
 
+export const LOGOUT = 'LOGOUT';
 
 export const SET_HISTORY = 'SET_HISTORY';
 export const OPEN_DRAWER = 'OPEN_DRAWER';

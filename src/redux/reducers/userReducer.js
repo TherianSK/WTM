@@ -1,4 +1,4 @@
-import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL,REGISTRATION_SUCCESS,REGISTRATION_FAIL} from '../types'
+import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL,REGISTRATION_SUCCESS,REGISTRATION_FAIL,LOGOUT} from '../types'
 
 const initialState = {
   token: null,
@@ -13,6 +13,8 @@ export default function drawerReducer(state = initialState, action) {
 
 
   switch (action.type) {
+    case LOGOUT:
+    return initialState;
     case LOGIN_START:
     return { ...state, loading: true,error:false };
     case REGISTRATION_SUCCESS:

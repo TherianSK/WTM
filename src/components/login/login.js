@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withApollo } from 'react-apollo';
 import TextField from "material-ui/TextField";
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
 import {loginUser,registerUser} from '../../redux/actions';
 import StudentNavigation from './../student/navigation';
@@ -12,7 +13,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email:'test@test.sk',
+      email:'test@test.s',
       password:'testPass',
       newEmail:'',
       newPassword:'',
@@ -87,7 +88,7 @@ class Login extends Component {
               />
           </div>
 
-          <FlatButton
+          <RaisedButton
             label={this.props.loading?"Checking...":"Login"}
             primary={true} disabled={this.props.loading}
             style={{marginTop:20}}
@@ -135,7 +136,7 @@ class Login extends Component {
             onClick={()=>this.setState({isTeacher:!this.state.isTeacher})}
             />
           (if not you will become a student)
-          <FlatButton
+          <RaisedButton
             label={this.props.registered?"Registered, you can log in now":"Register"}
             primary={true}
             disabled={this.props.registered}
