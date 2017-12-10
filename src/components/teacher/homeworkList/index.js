@@ -76,13 +76,13 @@ class TaskList extends Component {
         <Table fixedHeader={false} multiSelectable={true} style={{width: "auto",tableLayout: 'auto'}}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
-              <TableHeaderColumn>Title</TableHeaderColumn>
-              <TableHeaderColumn>Deadline</TableHeaderColumn>
-              <TableHeaderColumn>Course</TableHeaderColumn>
-              <TableHeaderColumn>Difficulty</TableHeaderColumn>
-              <TableHeaderColumn>Work time</TableHeaderColumn>
-              <TableHeaderColumn>Points</TableHeaderColumn>
-              <TableHeaderColumn>Starts at</TableHeaderColumn>
+              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Title</TableHeaderColumn>
+              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Deadline</TableHeaderColumn>
+              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Course</TableHeaderColumn>
+              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Difficulty</TableHeaderColumn>
+              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Work time</TableHeaderColumn>
+              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Points</TableHeaderColumn>
+              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Starts at</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false} >

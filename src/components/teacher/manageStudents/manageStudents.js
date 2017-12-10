@@ -50,7 +50,7 @@ class ManageStudents extends Component {
           onRowSelection={(value)=> {this.setState({selectedUsers:value});}}>
           <TableHeader>
             <TableRow>
-              <TableHeaderColumn>E-mail</TableHeaderColumn>
+              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>E-mail</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody deselectOnClickaway={false}>

@@ -114,12 +114,13 @@ class Sidebar extends Component {
       </List>
       <Popover
         open={this.state.addCourseLoc?true:false}
+		style={{margin: 5}}
         anchorEl={this.state.addCourseLoc}
         anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
         targetOrigin={{horizontal: 'left', vertical: 'top'}}
         onRequestClose={()=>this.setState({addCourseLoc:null,courseName:''})}
         >
-        <div>
+        <div style={{padding: 3}}>
           <TextField
             hintText="Course name"
             floatingLabelText="Course name"
