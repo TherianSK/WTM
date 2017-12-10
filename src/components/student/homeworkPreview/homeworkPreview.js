@@ -28,11 +28,11 @@ class HomeworkPreview extends Component {
       <div>
         <h1>Homework preview - {this.props.homework.title}</h1>
         <h4>Course</h4>
-        <TextField
+        <TextField 
+		  readOnly={true}
           fullWidth={true}
           floatingLabelFixed={true}
           value={this.props.homework.course?this.props.homework.course.title:''}
-          disabled={true}
           />
 
         <h4>Deadline</h4>
@@ -40,7 +40,7 @@ class HomeworkPreview extends Component {
           fullWidth={true}
           floatingLabelFixed={true}
           value={this.props.homework.deadline}
-          disabled={true}
+          readOnly={true}
           />
         {
           this.props.homework.description &&
@@ -50,7 +50,7 @@ class HomeworkPreview extends Component {
               fullWidth={true}
               floatingLabelFixed={true}
               value={this.props.homework.description}
-              disabled={true}
+              readOnly={true}
               />
           </div>
         }
@@ -62,7 +62,7 @@ class HomeworkPreview extends Component {
               fullWidth={true}
               floatingLabelFixed={true}
               value={this.props.homework.expectedDifficulty}
-              disabled={true}
+              readOnly={true}
               />
           </div>
         }
@@ -74,7 +74,7 @@ class HomeworkPreview extends Component {
               fullWidth={true}
               floatingLabelFixed={true}
               value={this.props.homework.expectedWorkTime}
-              disabled={true}
+              readOnly={true}
               />
           </div>
         }
@@ -86,7 +86,7 @@ class HomeworkPreview extends Component {
               fullWidth={true}
               floatingLabelFixed={true}
               value={this.props.homework.points}
-              disabled={true}
+              readOnly={true}
               />
           </div>
         }
@@ -98,7 +98,7 @@ class HomeworkPreview extends Component {
               fullWidth={true}
               floatingLabelFixed={true}
               value={this.props.homework.startsAt}
-              disabled={true}
+              readOnly={true}
               />
           </div>
         }
