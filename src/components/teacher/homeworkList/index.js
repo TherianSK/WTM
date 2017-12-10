@@ -73,7 +73,7 @@ class TaskList extends Component {
           Are you sure you want to delete this course with name {this.props.taskListTitle}?
         </Dialog>
 
-        <Table multiSelectable={true} style={{tableLayout: 'auto'}}>
+        <Table fixedHeader={false} multiSelectable={true} style={{width: "auto",tableLayout: 'auto'}}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn>Title</TableHeaderColumn>

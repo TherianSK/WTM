@@ -5,6 +5,7 @@ import Drawer from "material-ui/Drawer";
 import { connect } from "react-redux";
 import IconButton from "material-ui/IconButton";
 import LogOut from "material-ui/svg-icons/action/power-settings-new";
+import Menu from "material-ui/svg-icons/navigation/menu";
 import { white } from "material-ui/styles/colors";
 
 import { openDrawer, closeDrawer,logoutUser } from "../../../redux/actions";
@@ -23,14 +24,25 @@ class Sidebar extends Component {
           }}
           iconElementRight={
             <span>
-            <IconButton>
+
+            <IconButton tooltip="Log out" tooltipStyles={{fontSize:20}}>
               <LogOut color={white} onClick={this.props.logoutUser} />
+            </IconButton>
+            </span>
+          }
+
+          iconElementLeft={
+            <span>
+
+            <IconButton tooltip="Menu" tooltipStyles={{fontSize:20}}>
+              <Menu color={white} />
             </IconButton>
             </span>
           }
           onLeftIconButtonTouchTap={
             this.props.opened ? this.props.closeDrawer : this.props.openDrawer
           }
+
         />
         <Drawer open={this.props.opened} docked={true}>
           <SidebarContent />

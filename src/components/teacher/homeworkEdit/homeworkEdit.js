@@ -12,6 +12,8 @@ import {setTaskListID} from '../../../redux/actions';
 class HomeworkEdit extends Component {
   constructor(props){
     super(props);
+    let comments=[...this.props.homework.comments];
+    comments.sort((item1,item2)=>item1.rating<item2.rating);
     this.props.refetch();
     this.state={
       deadline:this.props.homework.deadline?this.props.homework.deadline.substring(0,this.props.homework.deadline.length-2):null,
@@ -21,7 +23,7 @@ class HomeworkEdit extends Component {
       points:this.props.homework.points,
       startsAt:this.props.homework.startsAt?this.props.homework.startsAt.substring(0,this.props.homework.startsAt.length-2):null,
       title:this.props.homework.title,
-      comments:this.props.homework.comments,
+      comments,
     }
   }
   componentWillMount(){

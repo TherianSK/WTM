@@ -22,7 +22,7 @@ class TaskList extends Component {
         <div style={{borderBottom: 'thick solid black',borderWidth:1,marginBottom:10}}>
           <h2>{this.props.taskListTitle}</h2>
         </div>
-        <Table multiSelectable={true} style={{tableLayout: 'auto'}}>
+        <Table fixedHeader={false} multiSelectable={true} style={{width: "auto",tableLayout: 'auto'}}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn>Title</TableHeaderColumn>
