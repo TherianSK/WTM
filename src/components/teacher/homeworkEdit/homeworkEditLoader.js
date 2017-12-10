@@ -7,7 +7,6 @@ class HomeworkEditLoader extends Component {
     if(this.props.loadingHomeworks){
       return (<div>Loading...</div>);
     }
-    console.log(this.props);
     return (
       <HomeworkEdit history={this.props.history} id={this.props.id} refetch={this.props.refetchHomeworks} homework={this.props.homework} />
     );

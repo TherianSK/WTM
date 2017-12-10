@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import RaisedButton from 'material-ui/RaisedButton';
-
+import {deleteCourse} from './query';
 import {
   Table,
   TableBody,
@@ -11,18 +11,32 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import {setHistory} from '../../../redux/actions';
+import {setHistory, setTaskListID} from '../../../redux/actions';
+import FlatButton from 'material-ui/FlatButton';
+import Dialog from 'material-ui/Dialog';
+import { withApollo } from 'react-apollo';
 
 class TaskList extends Component {
   constructor(props){
     super(props);
     this.state={
       locManage:null,
+      deleteOpen:false,
     };
   }
   componentWillMount(){
     this.props.setHistory(this.props.history);
   }
+
+  deleteCourse(){
+    this.props.setTaskListID(null);
+    this.props.client.mutate({
+      mutation: deleteCourse,
+      variables: { id:this.props.taskListID},
+    });
+    this.setState({deleteOpen:false});
+  }
+
   render(){
     return (
       <div>
@@ -47,8 +61,18 @@ class TaskList extends Component {
                 style={{marginLeft:15}}
                 onClick={(event)=>this.setState({locManage:event.currentTarget})} />
             </Link>
+            <RaisedButton label="Delete" style={{marginLeft:15}} labelColor="#FFF" backgroundColor='red' onClick={()=>this.setState({deleteOpen:true})} />
           </div>
         }
+        <Dialog
+          title="Delete homework"
+          actions={[<FlatButton label="Cancel" primary={true} onClick={()=>this.setState({deleteOpen:false})}/>,<RaisedButton label="Delete" labelColor="#FFF" backgroundColor='red' onClick={this.deleteCourse.bind(this)} />]}
+          modal={true}
+          open={this.state.deleteOpen}
+          >
+          Are you sure you want to delete this course with name {this.props.taskListTitle}?
+        </Dialog>
+
         <Table multiSelectable={true} style={{tableLayout: 'auto'}}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
@@ -86,4 +110,4 @@ const mapStateToProps = ({ data }) => {
   return { homeworks,taskListTitle,taskListID };
 };
 
-export default connect(mapStateToProps, {setHistory})(TaskList);
+export default withApollo(connect(mapStateToProps, {setHistory,setTaskListID})(TaskList));

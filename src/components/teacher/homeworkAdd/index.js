@@ -7,32 +7,37 @@ import Slider from 'material-ui/Slider';
 import {addHomework} from './query';
 import { connect } from 'react-redux';
 import { withApollo } from 'react-apollo';
+import {setHistory,setTaskListID} from '../../../redux/actions';
 
 class HomeworkAdd extends Component {
   constructor(props){
     super(props);
     this.state={
-      deadline:null,
+      deadline:'',
       description:'',
       expectedDifficulty:0,
       expectedWorkTime: 0,
       points:0,
-      startsAt:null,
+      startsAt:'',
       title:'',
     }
   }
 
+  componentWillMount(){
+    this.props.setHistory(this.props.history);
+    this.props.setTaskListID(this.props.match.params.id);
+  }
+
   add(){
-    console.log(this.state);
     this.props.client.mutate({
       mutation: addHomework,
       variables: {
-        deadline:this.state.deadline?this.state.deadline:null,
+        deadline:this.state.deadline!==''?this.state.deadline:null,
         description:this.state.description,
         expectedDifficulty:this.state.expectedDifficulty,
         expectedWorkTime:this.state.expectedWorkTime?parseFloat(this.state.expectedWorkTime):null,
         points:this.state.points?parseInt(this.state.points,10):null,
-        startsAt:this.state.startsAt?this.state.startsAt:null,
+        startsAt:this.state.startsAt!==''?this.state.startsAt:null,
         title:this.state.title,
         courseId:this.props.match.params.id,
       }
@@ -119,4 +124,4 @@ class HomeworkAdd extends Component {
   };
 
 
-  export default withApollo(connect(mapStateToProps, {})(HomeworkAdd));
+  export default withApollo(connect(mapStateToProps, {setHistory,setTaskListID})(HomeworkAdd));

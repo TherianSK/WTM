@@ -7,6 +7,8 @@ export const SET_HOMEWORKS = 'SET_HOMEWORKS';
 
 export const LOGOUT = 'LOGOUT';
 
+
+export const SET_LIST_ID = 'SET_LIST_ID';
 export const SET_HISTORY = 'SET_HISTORY';
 export const OPEN_DRAWER = 'OPEN_DRAWER';
 export const CLOSE_DRAWER = 'CLOSE_DRAWER';

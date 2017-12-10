@@ -13,6 +13,9 @@ export const homework = gql`
       rating
       timeSpend
     }
+    course{
+      id
+    }
     deadline
     description
     expectedDifficulty
@@ -39,4 +42,14 @@ mutation updateHomework($id:ID!,$deadline:DateTime,$description:String!,$expecte
 		id
 	}
 }
+`;
+
+export const deleteHomework = gql`
+	mutation ($id: ID!) {
+		deleteHomework(
+			id: $id,
+		) {
+		  id
+		}
+	}
 `;

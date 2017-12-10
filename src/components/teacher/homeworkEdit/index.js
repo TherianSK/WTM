@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 class HomeworkEditLoader extends Component {
   componentWillMount(){
     this.props.setHistory(this.props.history);
-    console.log(this.props.history);
   }
 
   render() {

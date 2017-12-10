@@ -8,7 +8,7 @@ import { List } from "material-ui/List";
 import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
 import TextField from "material-ui/TextField";
-import {subscription} from "./query";
+import {subscription,homeworkSubscription} from "./query";
 import {setHomeworks,addNewCourse} from '../../../redux/actions';
 
 class Sidebar extends Component {
@@ -23,11 +23,50 @@ class Sidebar extends Component {
     this.props.subscribeToMore({
       document: subscription,
       updateQuery: () => {
-        this.props.refetch();
+        this.props.refetch().then(()=>{
+          if(this.props.taskListID){
+            let homeworks=[];
+            this.props.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
+            homeworks=homeworks.filter((homework)=>homework.course.id===this.props.taskListID);
+            homeworks.sort((item1,item2)=>item1.deadline>item2.deadline);
+            this.props.setHomeworks(homeworks,this.props.courses[this.props.courses.findIndex((course)=>course.id===this.props.taskListID)].title,this.props.taskListID);
+            this.props.history.push('/');
+          }
+          else{
+            let homeworks=[];
+            this.props.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
+            homeworks.sort((item1,item2)=>item1.deadline>item2.deadline);
+            this.props.setHomeworks(homeworks,'Deadlines',null);
+            this.props.history.push('/');
+          }
+        });
         return;
       },
     });
 
+    this.props.subscribeToMore({
+      document: homeworkSubscription,
+      updateQuery: () => {
+        this.props.refetch().then(()=>{
+          if(this.props.taskListID){
+            let homeworks=[];
+            this.props.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
+            homeworks=homeworks.filter((homework)=>homework.course.id===this.props.taskListID);
+            homeworks.sort((item1,item2)=>item1.deadline>item2.deadline);
+            this.props.setHomeworks(homeworks,this.props.courses[this.props.courses.findIndex((course)=>course.id===this.props.taskListID)].title,this.props.taskListID);
+            this.props.history.push('/');
+          }
+          else{
+            let homeworks=[];
+            this.props.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
+            homeworks.sort((item1,item2)=>item1.deadline>item2.deadline);
+            this.props.setHomeworks(homeworks,'Deadlines',null);
+            this.props.history.push('/');
+          }
+        });
+        return;
+      },
+    });
   }
   render() {
     if(this.props.loading){
@@ -103,8 +142,8 @@ class Sidebar extends Component {
 
 
 const mapStateToProps = ({ user, data }) => {
-  const { history } = data;
-  return {user:user.user,history};
+  const { history, taskListID } = data;
+  return {user:user.user,history,taskListID};
 };
 
 

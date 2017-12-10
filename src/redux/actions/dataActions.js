@@ -1,4 +1,4 @@
-import {SET_HOMEWORKS ,SET_HISTORY, LOGIN_SUCCESS} from '../types';
+import {SET_HOMEWORKS ,SET_HISTORY, LOGIN_SUCCESS, SET_LIST_ID} from '../types';
 import { addComment,data,addCourse,setStudents } from './dataQuery';
 
 
@@ -12,6 +12,16 @@ export const setHomeworks = (homeworks,name,id) => {
     });
   }
 }
+
+export const setTaskListID = (id) => {
+  return (dispatch) => {
+    dispatch({
+      type: SET_LIST_ID,
+      id
+    });
+  }
+}
+
 
 export const setHistory = (history) => {
   return (dispatch) => {
@@ -56,7 +66,6 @@ export const comment = (comment,userId,homeworkId,client,rating,difficulty,timeS
 }
 
 export const setCourseStudents = (users,client, courseId,refetch) => {
-  console.log(users);
   return (dispatch) => {
     client.mutate({
       mutation: setStudents,

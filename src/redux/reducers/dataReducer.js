@@ -1,4 +1,4 @@
-import {LOGIN_SUCCESS,SET_HOMEWORKS,SET_HISTORY} from '../types'
+import {LOGIN_SUCCESS,SET_HOMEWORKS,SET_HISTORY,SET_LIST_ID} from '../types'
 
 const initialState = {
   courses: [],
@@ -11,6 +11,10 @@ const initialState = {
 
 export default function drawerReducer(state = initialState, action) {
   switch (action.type) {
+    case SET_LIST_ID:{
+      return { ...state, taskListID:action.id};
+    }
+
     case SET_HOMEWORKS:{
       return { ...state, homeworks:action.homeworks, taskListTitle:action.name,taskListID:action.id};
     }

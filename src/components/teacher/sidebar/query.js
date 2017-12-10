@@ -53,3 +53,19 @@ subscription {
   }
 }
 `;
+
+export const homeworkSubscription = gql`
+subscription {
+  Homework(filter: {mutation_in: [CREATED,UPDATED,DELETED]}){
+    mutation
+    node {
+      id
+      title
+      expectedDifficulty
+      expectedWorkTime
+      points
+      startsAt
+    }
+  }
+}
+`;

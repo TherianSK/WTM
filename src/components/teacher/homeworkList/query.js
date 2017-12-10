@@ -28,3 +28,13 @@ export const deadlines = gql`
 	 }
   }
 `;
+
+export const deleteCourse = gql`
+	mutation ($id: ID!) {
+		deleteCourse(
+			id: $id,
+		) {
+		  id
+		}
+	}
+`;
