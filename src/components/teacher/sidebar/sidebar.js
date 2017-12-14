@@ -80,7 +80,8 @@ class Sidebar extends Component {
       <div
         style={{
           justifyContent: "flex-start",
-          textAlign: "left"
+          textAlign: "left",
+          marginTop:70
         }}
         >
         <List>
@@ -114,7 +115,7 @@ class Sidebar extends Component {
       </List>
       <Popover
         open={this.state.addCourseLoc?true:false}
-		style={{margin: 5}}
+        style={{margin: 5}}
         anchorEl={this.state.addCourseLoc}
         anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
         targetOrigin={{horizontal: 'left', vertical: 'top'}}

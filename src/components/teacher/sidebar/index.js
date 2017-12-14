@@ -35,7 +35,6 @@ class Sidebar extends Component {
         <AppBar
           title={this.props.navTitle}
           style={{
-            paddingLeft: this.props.opened ? 276 : 20,
             backgroundColor: "#3F51B5"
           }}
           iconElementRight={
@@ -58,7 +57,7 @@ class Sidebar extends Component {
             this.props.opened ? this.props.closeDrawer : this.props.openDrawer
           }
         />
-        <Drawer open={this.props.opened} docked={true}>
+        <Drawer open={this.props.opened} docked={true} style={{position: "fixed"}}>
           <Sidebar />
         </Drawer>
       </div>
@@ -68,8 +67,8 @@ class Sidebar extends Component {
 
 const mapStateToProps = ({ drawer, user, data }) => {
   const { opened } = drawer;
-  const { navTitle } = data;
-  return { opened , user:user.user,navTitle};
+  const { navTitle,isMobile } = data;
+  return { opened , user:user.user,navTitle,isMobile};
 };
 
 export default connect(mapStateToProps, {openDrawer,closeDrawer,logoutUser})(Sidebar);

@@ -9,12 +9,10 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div
-        style={{
+      <div style={{marginTop:70,
           justifyContent: "flex-start",
-          textAlign: "left"
-        }}
-        >
+          textAlign: "left",
+        }}>
         <List>
           <MenuItem key="deadline" leftIcon={<ProjectIcon />} style={{backgroundColor:this.props.taskListID===null?'#d3d3d3':'white'}} onClick={()=>{
               let homeworks=[];

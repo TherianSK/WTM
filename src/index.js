@@ -16,6 +16,6 @@ const App = () =>
       <Login />
     </MuiThemeProvider>
   </ApolloProvider>);
-
+document.body.style.margin = 0;
 ReactDOM.render(<App />, document.getElementById('root'));
 export default App;
