@@ -4,6 +4,8 @@ export const LOGIN_FAIL = 'AUTH_LOGIN_FAIL';
 export const REGISTRATION_FAIL = 'REGISTRATION_FAIL';
 export const REGISTRATION_SUCCESS = 'REGISTRATION_SUCCESS';
 export const SET_HOMEWORKS = 'SET_HOMEWORKS';
+export const SET_NAVTITLE = 'SET_NAVTITLE';
+export const IS_MOBILE = 'IS_MOBILE';
 
 export const LOGOUT = 'LOGOUT';
 

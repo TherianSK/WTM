@@ -1,5 +1,25 @@
-import {SET_HOMEWORKS ,SET_HISTORY, LOGIN_SUCCESS, SET_LIST_ID} from '../types';
+import {SET_HOMEWORKS ,SET_HISTORY, LOGIN_SUCCESS, SET_LIST_ID,SET_NAVTITLE,IS_MOBILE} from '../types';
 import { addComment,data,addCourse,setStudents } from './dataQuery';
+
+
+
+export const setNavTitle = (title) => {
+  return (dispatch) => {
+    dispatch({
+      type: SET_NAVTITLE,
+      title
+    });
+  }
+}
+
+export const isMobile = (isMobile) => {
+  return (dispatch) => {
+    dispatch({
+      type: IS_MOBILE,
+      isMobile
+    });
+  }
+}
 
 
 export const setHomeworks = (homeworks,name,id) => {

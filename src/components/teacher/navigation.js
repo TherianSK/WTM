@@ -24,6 +24,18 @@ class Navigation extends Component {
               <Route path="/" component={NotFound} />
             </Switch>
           </div>
+          <footer style={{
+              backgroundColor:'#3F51B5',
+              position: "fixed",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: 27
+            }}>
+            <div style={{float:"right",color:"white",display:'flex'}}>
+              Created by BilBoHei team for WTAM course.
+            </div>
+          </footer>
         </div>
       </Router>
     );

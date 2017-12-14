@@ -18,20 +18,17 @@ class TaskList extends Component {
   }
   render(){
     return (
-      <div>
-        <div style={{borderBottom: 'thick solid black',borderWidth:1,marginBottom:10}}>
-          <h2>{this.props.taskListTitle}</h2>
-        </div>
+      <div style={{marginTop:20}}>
         <Table fixedHeader={false} multiSelectable={true} style={{width: "auto",tableLayout: 'auto'}}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
               <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Title</TableHeaderColumn>
               <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Deadline</TableHeaderColumn>
-              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Course</TableHeaderColumn>
-              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Difficulty</TableHeaderColumn>
-              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Work time</TableHeaderColumn>
-              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Points</TableHeaderColumn>
-              <TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Starts at</TableHeaderColumn>
+              {!this.props.isMobile&&<TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Course</TableHeaderColumn>}
+              {!this.props.isMobile&&<TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Difficulty</TableHeaderColumn>}
+              {!this.props.isMobile&&<TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Work time</TableHeaderColumn>}
+              {!this.props.isMobile&&<TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Points</TableHeaderColumn>}
+              {!this.props.isMobile&&<TableHeaderColumn style={{color: 'black', fontWeight: 'bold'}}>Starts at</TableHeaderColumn>}
             </TableRow>
           </TableHeader>
           <TableBody displayRowCheckbox={false} >
@@ -40,11 +37,11 @@ class TaskList extends Component {
                 <TableRow key={homework.id}>
                   <TableRowColumn><Link style={{textDecoration:'none',fontSize:15}} to={ `/homework/p/${homework.id}` }>{homework.title}</Link></TableRowColumn>
                   <TableRowColumn style={{overflowX:'none'}}>{homework.deadline}</TableRowColumn>
-                  <TableRowColumn>{homework.course.title}</TableRowColumn>
-                  <TableRowColumn>{homework.expectedDifficulty}</TableRowColumn>
-                  <TableRowColumn>{homework.expectedWorkTime}</TableRowColumn>
-                  <TableRowColumn>{homework.points}</TableRowColumn>
-                  <TableRowColumn>{homework.startsAt}</TableRowColumn>
+                  {!this.props.isMobile&&<TableRowColumn>{homework.course.title}</TableRowColumn>}
+                  {!this.props.isMobile&&<TableRowColumn>{homework.expectedDifficulty}</TableRowColumn>}
+                  {!this.props.isMobile&&<TableRowColumn>{homework.expectedWorkTime}</TableRowColumn>}
+                  {!this.props.isMobile&&<TableRowColumn>{homework.points}</TableRowColumn>}
+                  {!this.props.isMobile&&<TableRowColumn>{homework.startsAt}</TableRowColumn>}
                 </TableRow>)
               )
             }
@@ -55,8 +52,8 @@ class TaskList extends Component {
   }
 }
 const mapStateToProps = ({ data }) => {
-  const { homeworks,taskListTitle } = data;
-  return { homeworks,taskListTitle };
+  const { homeworks,taskListTitle,isMobile } = data;
+  return { homeworks,taskListTitle,isMobile };
 };
 
 export default connect(mapStateToProps, {setHistory})(TaskList);

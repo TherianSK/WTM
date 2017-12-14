@@ -8,7 +8,7 @@ import Slider from 'material-ui/Slider';
 import {editHomework,deleteHomework} from './query';
 import { connect } from 'react-redux';
 import { withApollo } from 'react-apollo';
-import {setTaskListID} from '../../../redux/actions';
+import {setTaskListID,setNavTitle} from '../../../redux/actions';
 class HomeworkEdit extends Component {
   constructor(props){
     super(props);
@@ -28,6 +28,7 @@ class HomeworkEdit extends Component {
   }
   componentWillMount(){
     this.props.setTaskListID(this.props.homework.course.id);
+    this.props.setNavTitle("Edit homework");
 
   }
 
@@ -63,12 +64,14 @@ class HomeworkEdit extends Component {
     let averageRat=0;
     let averageTime=0;
     this.props.homework.comments.map((comment)=>{averageDif+=comment.difficulty;averageRat+=comment.rating;averageTime+=comment.timeSpend;return false;})
-    averageDif/=this.props.homework.comments.length;
-    averageRat/=this.props.homework.comments.length;
-    averageTime/=this.props.homework.comments.length;
+    if(this.props.homework.comments.length!==0){      
+      averageDif/=this.props.homework.comments.length;
+      averageRat/=this.props.homework.comments.length;
+      averageTime/=this.props.homework.comments.length;
+    }
 
     return (
-      <div>
+      <div style={{marginTop:20}}>
         <div>
           <Dialog
             title="Delete homework"
@@ -79,7 +82,6 @@ class HomeworkEdit extends Component {
             Are you sure you want to delete this homework with name {this.props.homework.title}?
           </Dialog>
         </div>
-        <h1>Homework edit - {this.props.homework.title}</h1>
         <RaisedButton label="Save" primary={true} onClick={this.saveEdit.bind(this)} />
         <RaisedButton label="Go back" secondary={true} onClick={()=>this.props.history.goBack()} />
         <RaisedButton label="Delete" labelColor="#FFF" backgroundColor='red' onClick={()=>this.setState({deleteOpen:true})} />
@@ -161,7 +163,7 @@ class HomeworkEdit extends Component {
                     <div>Time spend: {comment.timeSpend}</div>
                   </div>
                   <Paper style={{marginLeft:5,padding:5,flex:1}} zDepth={1}>
-                    Comment: {comment.body}
+                    <article>Comment: {comment.body}</article>
                   </Paper>
                 </div>
               </Paper>
@@ -179,4 +181,4 @@ const mapStateToProps = ({ user }) => {
 };
 
 
-export default withApollo(connect(mapStateToProps, {setTaskListID})(HomeworkEdit));
+export default withApollo(connect(mapStateToProps, {setTaskListID,setNavTitle})(HomeworkEdit));

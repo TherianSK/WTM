@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Slider from 'material-ui/Slider';
 import Paper from 'material-ui/Paper';
 import { connect } from 'react-redux';
-import {comment} from '../../../redux/actions';
+import {comment,setNavTitle} from '../../../redux/actions';
 import { withApollo } from 'react-apollo';
 
 class HomeworkPreview extends Component {
@@ -18,17 +18,18 @@ class HomeworkPreview extends Component {
       send:false
     }
   }
-
+  componentWillMount(){
+    this.props.setNavTitle("Homework preview");
+  }
   render() {
     if(this.props.loadingHomeworks){
       return (<div>Loading...</div>);
     }
     let cantComment=this.props.homework.comments.some((comment)=>comment.user&&comment.user.id===this.props.user.id);
     return (
-      <div>
-        <h1>Homework preview - {this.props.homework.title}</h1>
+      <div style={{marginTop:20}}>
         <h4>Course</h4>
-        <TextField 
+        <TextField
 		  readOnly={true}
           fullWidth={true}
           floatingLabelFixed={true}
@@ -168,4 +169,4 @@ const mapStateToProps = ({ user }) => {
 };
 
 
-export default withApollo(connect(mapStateToProps, {comment})(HomeworkPreview));
+export default withApollo(connect(mapStateToProps, {comment,setNavTitle})(HomeworkPreview));

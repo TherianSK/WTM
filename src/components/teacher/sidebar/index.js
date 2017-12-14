@@ -33,7 +33,7 @@ class Sidebar extends Component {
     return (
       <div className="App">
         <AppBar
-          title="Student-teacher bridge"
+          title={this.props.navTitle}
           style={{
             paddingLeft: this.props.opened ? 276 : 20,
             backgroundColor: "#3F51B5"
@@ -47,7 +47,7 @@ class Sidebar extends Component {
             </span>
           }
           iconElementLeft={
-            <span>
+            <span style={{display:this.props.isMobile?"block":"none"}}>
 
             <IconButton tooltip="Menu" tooltipStyles={{fontSize:20}}>
               <Menu color={white} />
@@ -66,9 +66,10 @@ class Sidebar extends Component {
   }
 }
 
-const mapStateToProps = ({ drawer, user }) => {
+const mapStateToProps = ({ drawer, user, data }) => {
   const { opened } = drawer;
-  return { opened , user:user.user};
+  const { navTitle } = data;
+  return { opened , user:user.user,navTitle};
 };
 
 export default connect(mapStateToProps, {openDrawer,closeDrawer,logoutUser})(Sidebar);

@@ -16,22 +16,22 @@ class Sidebar extends Component {
         }}
         >
         <List>
-          <MenuItem key="deadline" leftIcon={<ProjectIcon />} onClick={()=>{
+          <MenuItem key="deadline" leftIcon={<ProjectIcon />} style={{backgroundColor:this.props.taskListID===null?'#d3d3d3':'white'}} onClick={()=>{
               let homeworks=[];
               this.props.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
               homeworks.sort((item1,item2)=>item1.deadline>item2.deadline);
-              this.props.setHomeworks(homeworks,'Deadlines')
+              this.props.setHomeworks(homeworks,'Deadlines',null)
               this.props.history.push('/');
             }}>
             Deadlines
           </MenuItem>
           {this.props.courses.map(course => (
-            <MenuItem key={course.id} leftIcon={<ProjectIcon />} onClick={()=>{
+            <MenuItem key={course.id} leftIcon={<ProjectIcon />} style={{backgroundColor:this.props.taskListID===course.id?'#d3d3d3':'white'}} onClick={()=>{
                 let homeworks=[];
                 this.props.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
                 homeworks=homeworks.filter((homework)=>homework.course.id===course.id);
                 homeworks.sort((item1,item2)=>item1.deadline>item2.deadline);
-                this.props.setHomeworks(homeworks,course.title);
+                this.props.setHomeworks(homeworks,course.title,course.id);
                 this.props.history.push('/');
               }
             }>
@@ -45,8 +45,8 @@ class Sidebar extends Component {
 }
 
 const mapStateToProps = ({ data }) => {
-  const { courses,history } = data;
-  return { courses,history };
+  const { courses,history,taskListID } = data;
+  return { courses,history,taskListID };
 };
 
 export default connect(mapStateToProps, {setHomeworks})(Sidebar);

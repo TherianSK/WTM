@@ -5,7 +5,7 @@ import TextField from "material-ui/TextField";
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
-import {loginUser,registerUser} from '../../redux/actions';
+import {loginUser,registerUser,isMobile} from '../../redux/actions';
 import StudentNavigation from './../student/navigation';
 import TeacherNavigation from './../teacher/navigation';
 
@@ -13,21 +13,22 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email:'test@test.s',
+      email:'test@test.sk',
       password:'testPass',
       newEmail:'',
       newPassword:'',
       registration:false,
       isTeacher:false,
-      width:document.body.clientWidth/2-250,
     };
   }
 
   componentDidMount() {
-    window.addEventListener("resize", ()=>this.setState({width:document.body.clientWidth/2-250}));
+    this.props.isMobile(document.body.clientWidth<=768);
+    window.addEventListener("resize", ()=>this.props.isMobile(document.body.clientWidth<=768));
   }
+
   componentWillUnmount() {
-    window.removeEventListener("resize", ()=>this.setState({width:document.body.clientWidth/2-250}));
+    window.removeEventListener("resize", ()=>this.props.isMobile(document.body.clientWidth<=768));
   }
 
   render() {
@@ -159,4 +160,4 @@ const mapStateToProps = ({ user }) => {
 };
 
 
-export default withApollo(connect(mapStateToProps, {loginUser,registerUser})(Login));
+export default withApollo(connect(mapStateToProps, {loginUser,registerUser,isMobile})(Login));

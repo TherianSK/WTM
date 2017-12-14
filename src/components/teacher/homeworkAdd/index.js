@@ -7,7 +7,7 @@ import Slider from 'material-ui/Slider';
 import {addHomework} from './query';
 import { connect } from 'react-redux';
 import { withApollo } from 'react-apollo';
-import {setHistory,setTaskListID} from '../../../redux/actions';
+import {setHistory,setTaskListID,setNavTitle} from '../../../redux/actions';
 
 class HomeworkAdd extends Component {
   constructor(props){
@@ -26,6 +26,7 @@ class HomeworkAdd extends Component {
   componentWillMount(){
     this.props.setHistory(this.props.history);
     this.props.setTaskListID(this.props.match.params.id);
+    this.props.setNavTitle("Add new homework");
   }
 
   add(){
@@ -49,8 +50,7 @@ class HomeworkAdd extends Component {
 
     render() {
       return (
-        <div>
-          <h1>Homework add</h1>
+        <div style={{marginTop:20}}>
           <RaisedButton label="Add new homework" primary={true} onClick={this.add.bind(this)} />
           <RaisedButton label="Go back" secondary={true} onClick={()=>this.props.history.goBack()} />
           <Paper style={{margin:25,padding:10}} zDepth={2}>
@@ -124,4 +124,4 @@ class HomeworkAdd extends Component {
   };
 
 
-  export default withApollo(connect(mapStateToProps, {setHistory,setTaskListID})(HomeworkAdd));
+  export default withApollo(connect(mapStateToProps, {setHistory,setTaskListID,setNavTitle})(HomeworkAdd));

@@ -1,4 +1,4 @@
-import {LOGIN_SUCCESS,SET_HOMEWORKS,SET_HISTORY,SET_LIST_ID} from '../types'
+import {LOGIN_SUCCESS,SET_HOMEWORKS,SET_HISTORY,SET_LIST_ID, SET_NAVTITLE,IS_MOBILE} from '../types'
 
 const initialState = {
   courses: [],
@@ -7,6 +7,8 @@ const initialState = {
   homeworks:[],
   taskListID:null,
   taskListTitle:'',
+  navTitle:'',
+  isMobile:false,
 };
 
 export default function drawerReducer(state = initialState, action) {
@@ -14,9 +16,14 @@ export default function drawerReducer(state = initialState, action) {
     case SET_LIST_ID:{
       return { ...state, taskListID:action.id};
     }
-
+    case IS_MOBILE:{
+      return { ...state, isMobile:action.isMobile};
+    }
+    case SET_NAVTITLE:{
+      return { ...state, navTitle:action.title};
+    }
     case SET_HOMEWORKS:{
-      return { ...state, homeworks:action.homeworks, taskListTitle:action.name,taskListID:action.id};
+      return { ...state, homeworks:action.homeworks, taskListTitle:action.name,navTitle:action.name,taskListID:action.id};
     }
 
     case SET_HISTORY:{
@@ -24,7 +31,7 @@ export default function drawerReducer(state = initialState, action) {
     }
 
     case LOGIN_SUCCESS:{
-      return { ...state, courses:action.courses };
+      return { ...state, courses:action.courses,navTitle:"Deadlines" };
     }
     default:
       return state;

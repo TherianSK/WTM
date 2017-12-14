@@ -42,7 +42,7 @@ export const loginUser = (email, password, client) => {
             loggedUserData.data.signinUser.user.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
           }
           homeworks.sort((item1,item2)=>item1.deadline>item2.deadline);
-          dispatch({type:SET_HOMEWORKS,name:'Deadlines',homeworks});
+          dispatch({type:SET_HOMEWORKS,name:'Deadlines',homeworks,id:null});
         }).catch((error)=>{
           console.log(error);
           dispatch({type:LOGIN_FAIL});

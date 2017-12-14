@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import {students} from './query';
 import ManageStudents from './manageStudents';
 import { graphql } from 'react-apollo';
-import {setHistory} from '../../../redux/actions';
+import {setHistory,setNavTitle} from '../../../redux/actions';
 import { connect } from "react-redux";
 
 class ManageStudentsLoader extends Component {
   componentWillMount(){
     this.props.setHistory(this.props.history);
+    this.props.setNavTitle("Managing students");
   }
 
   render() {
@@ -37,4 +38,4 @@ const mapStateToProps = ({ data, user }) => {
   return { taskListTitle,userId:user.user.id };
 };
 
-export default connect(mapStateToProps, {setHistory})(ManageStudentsLoader);
+export default connect(mapStateToProps, {setHistory,setNavTitle})(ManageStudentsLoader);
