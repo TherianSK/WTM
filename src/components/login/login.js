@@ -68,7 +68,7 @@ class Login extends Component {
             display:this.state.registration?'none':'block',
             margin:"auto"
           }}>
-          <h3>Login</h3>
+          <h3>Login to MUGA</h3>
           <div>
             <TextField
               hintText="E-mail"
@@ -149,6 +149,18 @@ class Login extends Component {
             <div style={{color:'red'}}>This account already exists!</div>
           }
         </div>
+        <footer style={{
+            backgroundColor:'#3F51B5',
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 27
+          }}>
+          <div style={{float:"right",color:"white",display:'flex'}}>
+            Created by BilBoHei team for WTAM course.
+          </div>
+        </footer>
       </div>
     );
   }

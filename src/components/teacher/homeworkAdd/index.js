@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
 import Paper from 'material-ui/Paper';
 import Slider from 'material-ui/Slider';
@@ -50,9 +51,9 @@ class HomeworkAdd extends Component {
 
     render() {
       return (
-        <div style={{marginTop:20}}>
-          <RaisedButton label="Add new homework" primary={true} onClick={this.add.bind(this)} />
-          <RaisedButton label="Go back" secondary={true} onClick={()=>this.props.history.goBack()} />
+        <div style={{marginTop:20, marginBottom:20}}>
+          <FlatButton style={{marginLeft:20, marginBottom:20}} label="Cancel" primary={true} onClick={()=>this.props.history.goBack()} />
+          <RaisedButton style={{marginLeft:20, marginBottom:20}} label="Add new homework" labelColor='#FFF' backgroundColor='green' onClick={this.add.bind(this)} />
           <Paper style={{margin:25,padding:10}} zDepth={2}>
             <TextField
               fullWidth={true}
@@ -74,18 +75,18 @@ class HomeworkAdd extends Component {
               fullWidth={true}
               floatingLabelFixed={true}
               type="datetime-local"
-              floatingLabelText="Deadline"
-              value={this.state.deadline}
-              onChange={(event,value)=>this.setState({deadline:value})}
+              floatingLabelText="Starts at"
+              value={this.state.startsAt}
+              onChange={(event,value)=>this.setState({startsAt:value})}
               />
 
             <TextField
               fullWidth={true}
               floatingLabelFixed={true}
               type="datetime-local"
-              floatingLabelText="Starts at"
-              value={this.state.startsAt}
-              onChange={(event,value)=>this.setState({startsAt:value})}
+              floatingLabelText="Deadline"
+              value={this.state.deadline}
+              onChange={(event,value)=>this.setState({deadline:value})}
               />
 
             <h4>Expected homework difficulty: {this.state.expectedDifficulty}!</h4>

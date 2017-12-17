@@ -27,7 +27,7 @@ class HomeworkPreview extends Component {
     }
     let cantComment=this.props.homework.comments.some((comment)=>comment.user&&comment.user.id===this.props.user.id);
     return (
-      <div style={{marginTop:20}}>
+      <div style={{marginTop:20, marginBottom:20, marginLeft:20}}>
         <h4>Course</h4>
         <TextField
 		  readOnly={true}

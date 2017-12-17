@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MenuItem from "material-ui/MenuItem";
-import ProjectIcon from "material-ui/svg-icons/file/folder-open";
+import ProjectIcon from "material-ui/svg-icons/social/school";
+import AlarmIcon from "material-ui/svg-icons/device/access-alarm";
 import { List } from "material-ui/List";
 import { connect } from "react-redux";
 import {setHomeworks} from '../../../redux/actions';
@@ -14,7 +15,7 @@ class Sidebar extends Component {
           textAlign: "left",
         }}>
         <List>
-          <MenuItem key="deadline" leftIcon={<ProjectIcon />} style={{backgroundColor:this.props.taskListID===null?'#d3d3d3':'white'}} onClick={()=>{
+          <MenuItem key="deadline" leftIcon={<AlarmIcon />} style={{backgroundColor:this.props.taskListID===null?'#d3d3d3':'white'}} onClick={()=>{
               let homeworks=[];
               this.props.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
               homeworks.sort((item1,item2)=>item1.deadline>item2.deadline);

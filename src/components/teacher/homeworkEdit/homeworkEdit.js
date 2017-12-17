@@ -64,14 +64,14 @@ class HomeworkEdit extends Component {
     let averageRat=0;
     let averageTime=0;
     this.props.homework.comments.map((comment)=>{averageDif+=comment.difficulty;averageRat+=comment.rating;averageTime+=comment.timeSpend;return false;})
-    if(this.props.homework.comments.length!==0){      
+    if(this.props.homework.comments.length!==0){
       averageDif/=this.props.homework.comments.length;
       averageRat/=this.props.homework.comments.length;
       averageTime/=this.props.homework.comments.length;
     }
 
     return (
-      <div style={{marginTop:20}}>
+      <div style={{marginTop:20, marginBottom:20}}>
         <div>
           <Dialog
             title="Delete homework"
@@ -82,9 +82,9 @@ class HomeworkEdit extends Component {
             Are you sure you want to delete this homework with name {this.props.homework.title}?
           </Dialog>
         </div>
-        <RaisedButton label="Save" primary={true} onClick={this.saveEdit.bind(this)} />
-        <RaisedButton label="Go back" secondary={true} onClick={()=>this.props.history.goBack()} />
-        <RaisedButton label="Delete" labelColor="#FFF" backgroundColor='red' onClick={()=>this.setState({deleteOpen:true})} />
+        <FlatButton style={{marginLeft:20, marginBottom:20}} label="Cancel" primary={true} onClick={()=>this.props.history.goBack()} />
+        <RaisedButton style={{marginLeft:20, marginBottom:20}} label="Save" labelColor='#FFF' backgroundColor='green' onClick={this.saveEdit.bind(this)} />
+        <RaisedButton style={{marginLeft:20, marginBottom:20}} label="Delete" labelColor="#FFF" backgroundColor='red' onClick={()=>this.setState({deleteOpen:true})} />
         <Paper style={{margin:25,padding:10}} zDepth={2}>
           <TextField
             fullWidth={true}
@@ -106,18 +106,18 @@ class HomeworkEdit extends Component {
             fullWidth={true}
             floatingLabelFixed={true}
             type="datetime-local"
-            floatingLabelText="Deadline"
-            value={this.state.deadline}
-            onChange={(event,value)=>this.setState({deadline:value})}
+            floatingLabelText="Starts at"
+            value={this.state.startsAt}
+            onChange={(event,value)=>this.setState({startsAt:value})}
             />
 
           <TextField
             fullWidth={true}
             floatingLabelFixed={true}
             type="datetime-local"
-            floatingLabelText="Starts at"
-            value={this.state.startsAt}
-            onChange={(event,value)=>this.setState({startsAt:value})}
+            floatingLabelText="Deadline"
+            value={this.state.deadline}
+            onChange={(event,value)=>this.setState({deadline:value})}
             />
 
           <h4>Expected homework difficulty: {this.state.expectedDifficulty}!</h4>

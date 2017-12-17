@@ -39,12 +39,13 @@ class TaskList extends Component {
 
   render(){
     return (
-      <div style={{marginTop:20}}>
+      <div style={{marginTop:20, marginLeft:20, marginBottom:20}}>
         {
           this.props.taskListID &&
           <div>
             <Link style={{textDecoration:'none',fontSize:15}} to={ `/homework/add/${this.props.taskListID}` }>
               <RaisedButton
+                style={{marginLeft:20, marginBottom:20}}
                 label="Add task"
                 labelColor='#FFF'
                 backgroundColor='green'
@@ -52,17 +53,17 @@ class TaskList extends Component {
             </Link>
             <Link style={{textDecoration:'none',fontSize:15}} to={ `/course/${this.props.taskListID}` }>
               <RaisedButton
+                style={{marginLeft:20, marginBottom:20}}
                 label="Manage students"
                 labelColor='#FFF'
-                backgroundColor='#81C0FA'
-                style={{marginLeft:15}}
+                backgroundColor='#3366CC'
                 onClick={(event)=>this.setState({locManage:event.currentTarget})} />
             </Link>
-            <RaisedButton label="Delete" style={{marginLeft:15}} labelColor="#FFF" backgroundColor='red' onClick={()=>this.setState({deleteOpen:true})} />
+            <RaisedButton label="Delete" style={{marginLeft:20, marginBottom:20}} labelColor="#FFF" backgroundColor='red' onClick={()=>this.setState({deleteOpen:true})} />
           </div>
         }
         <Dialog
-          title="Delete homework"
+          title="Delete Course"
           actions={[<FlatButton label="Cancel" primary={true} onClick={()=>this.setState({deleteOpen:false})}/>,<RaisedButton label="Delete" labelColor="#FFF" backgroundColor='red' onClick={this.deleteCourse.bind(this)} />]}
           modal={true}
           open={this.state.deleteOpen}

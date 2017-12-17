@@ -11,6 +11,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
 class ManageStudents extends Component {
   constructor(props){
@@ -40,9 +41,9 @@ class ManageStudents extends Component {
 
     return (
       <div>
-        <div style={{marginTop:10}}>
-          <RaisedButton label="Go back" labelColor='#FFF' backgroundColor='grey' onClick={this.props.history.goBack} />
-          <RaisedButton label="Save course users" labelColor='#FFF' backgroundColor='green' style={{marginLeft:10}} onClick={this.setUsers.bind(this)} />
+        <div style={{marginTop:20, marginBottom:20}}>
+          <FlatButton style={{marginLeft:20}} label="Cancel" primary={true} onClick={this.props.history.goBack} />
+          <RaisedButton style={{marginLeft:20}} label="Save course users" labelColor='#FFF' backgroundColor='green' style={{marginLeft:10}} onClick={this.setUsers.bind(this)} />
         </div>
         <Table
           multiSelectable={true}

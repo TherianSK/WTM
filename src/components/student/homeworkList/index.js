@@ -18,7 +18,7 @@ class TaskList extends Component {
   }
   render(){
     return (
-      <div style={{marginTop:20}}>
+      <div style={{marginTop:20, marginLeft:20, marginBottom:20}}>
         <Table fixedHeader={false} multiSelectable={true} style={{width: "auto",tableLayout: 'auto'}}>
           <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
             <TableRow>
