@@ -41,7 +41,7 @@ class Sidebar extends Component {
           }
 
           />
-        <Drawer open={this.props.opened}docked={true} style={{position: "fixed"}}>
+        <Drawer open={this.props.opened} docked={true} style={{position: "fixed",...(this.props.isMobile?{width:"100%"}:{})}}>
           <SidebarContent />
         </Drawer>
       </div>

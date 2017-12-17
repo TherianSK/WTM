@@ -43,7 +43,7 @@ class ManageStudents extends Component {
       <div>
         <div style={{marginTop:20, marginBottom:20}}>
           <FlatButton style={{marginLeft:20}} label="Cancel" primary={true} onClick={this.props.history.goBack} />
-          <RaisedButton style={{marginLeft:20}} label="Save course users" labelColor='#FFF' backgroundColor='green' style={{marginLeft:10}} onClick={this.setUsers.bind(this)} />
+          <RaisedButton label="Save course users" labelColor='#FFF' backgroundColor='green' style={{marginLeft:10}} onClick={this.setUsers.bind(this)} />
         </div>
         <Table
           multiSelectable={true}

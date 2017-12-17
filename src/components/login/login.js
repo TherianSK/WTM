@@ -5,7 +5,7 @@ import TextField from "material-ui/TextField";
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Checkbox from 'material-ui/Checkbox';
-import {loginUser,registerUser,isMobile} from '../../redux/actions';
+import {loginUser,registerUser,isMobile,openDrawer} from '../../redux/actions';
 import StudentNavigation from './../student/navigation';
 import TeacherNavigation from './../teacher/navigation';
 
@@ -24,11 +24,11 @@ class Login extends Component {
 
   componentDidMount() {
     this.props.isMobile(document.body.clientWidth<=768);
-    window.addEventListener("resize", ()=>this.props.isMobile(document.body.clientWidth<=768));
+    window.addEventListener("resize", ()=>{this.props.isMobile(document.body.clientWidth<=768);this.props.openDrawer()});
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", ()=>this.props.isMobile(document.body.clientWidth<=768));
+    window.removeEventListener("resize", ()=>{this.props.isMobile(document.body.clientWidth<=768);this.props.openDrawer()});
   }
 
   render() {
@@ -172,4 +172,4 @@ const mapStateToProps = ({ user }) => {
 };
 
 
-export default withApollo(connect(mapStateToProps, {loginUser,registerUser,isMobile})(Login));
+export default withApollo(connect(mapStateToProps, {loginUser,registerUser,openDrawer,isMobile})(Login));
