@@ -15,8 +15,8 @@ class Sidebar extends Component {
           textAlign: "left",
           width:"100%"
         }}>
-        <List>
-          <MenuItem key="deadline" leftIcon={<AlarmIcon />} style={{backgroundColor:this.props.taskListID===null?'#d3d3d3':'white'}} onClick={()=>{
+        <nav>
+          <MenuItem key="deadline" leftIcon={<AlarmIcon color={this.props.taskListID==null?'black':'grey'} />} style={{backgroundColor:this.props.taskListID===null?'#d3d3d3':'white'}} onClick={()=>{
               let homeworks=[];
               this.props.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
               homeworks.sort((item1,item2)=>item1.deadline>item2.deadline);
@@ -29,7 +29,7 @@ class Sidebar extends Component {
             Deadlines
           </MenuItem>
           {this.props.courses.map(course => (
-            <MenuItem key={course.id} leftIcon={<ProjectIcon />} style={{backgroundColor:this.props.taskListID===course.id?'#d3d3d3':'white'}} onClick={()=>{
+            <MenuItem key={course.id} leftIcon={<ProjectIcon color={this.props.taskListID==course.id?'black':'grey'} />} style={{backgroundColor:this.props.taskListID===course.id?'#d3d3d3':'white'}} onClick={()=>{
                 let homeworks=[];
                 this.props.courses.map((course)=>homeworks=homeworks.concat(course.homeworks));
                 homeworks=homeworks.filter((homework)=>homework.course.id===course.id);
@@ -44,7 +44,7 @@ class Sidebar extends Component {
             {course.title}
           </MenuItem>
         ))}
-      </List>
+      </nav>
     </div>
   );
 }

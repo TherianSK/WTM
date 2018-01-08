@@ -27,7 +27,7 @@ class Navigation extends Component {
           <footer style={{
               backgroundColor:'#3F51B5',
               position: "fixed",
-              bottom: 0,
+              bottom: this.props.isMobile?-500:0,
               left: 0,
               right: 0,
               height: 27
@@ -42,9 +42,10 @@ class Navigation extends Component {
   }
 }
 
-const mapStateToProps = ({ drawer }) => {
+const mapStateToProps = ({ data, drawer }) => {
   const { opened } = drawer;
-  return { opened };
+  const { isMobile } = data;
+  return { opened,isMobile };
 };
 
 export default connect(mapStateToProps, {})(Navigation);

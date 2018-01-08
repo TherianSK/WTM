@@ -1,7 +1,7 @@
 import {OPEN_DRAWER,CLOSE_DRAWER} from '../types'
 
 const initialState = {
-  opened: false,
+  opened: true,
 };
 
 export default function drawerReducer(state = initialState, action) {

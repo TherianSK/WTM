@@ -152,7 +152,7 @@ class Login extends Component {
         <footer style={{
             backgroundColor:'#3F51B5',
             position: "fixed",
-            bottom: 0,
+            bottom: this.props.mobile?-500:0,
             left: 0,
             right: 0,
             height: 27
@@ -166,9 +166,9 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = ({ user,data }) => {
   const { token, loading,error, registered, regError } = user;
-  return {token, loading,user:user.user,error,registered, regError};
+  return {token, loading,user:user.user,error,registered, regError,mobile:data.isMobile};
 };
 
 

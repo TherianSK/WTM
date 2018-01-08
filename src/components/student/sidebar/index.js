@@ -23,14 +23,14 @@ class Sidebar extends Component {
           }}
           iconElementRight={
             <span>
-              <IconButton tooltip="Log out" tooltipStyles={{fontSize:20}}>
+              <IconButton tooltip={this.props.isMobile?null:"Log out"} tooltipStyles={{fontSize:20}}>
                 <LogOut color={white} onClick={this.props.logoutUser} />
               </IconButton>
             </span>
           }
           iconElementLeft={
             <span style={{display:this.props.isMobile?"block":"none"}}>
-              <IconButton tooltip="Menu" tooltipStyles={{fontSize:20}}>
+              <IconButton>
                 <Menu color={white} />
               </IconButton>
             </span>

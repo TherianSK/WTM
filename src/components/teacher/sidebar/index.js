@@ -40,7 +40,7 @@ class Sidebar extends Component {
           iconElementRight={
             <span>
 
-            <IconButton tooltip="Log out" tooltipStyles={{fontSize:20}}>
+            <IconButton tooltip={this.props.isMobile?null:"Log out"} tooltipStyles={{fontSize:20}}>
               <LogOut color={white} onClick={this.props.logoutUser} />
             </IconButton>
             </span>
@@ -48,7 +48,7 @@ class Sidebar extends Component {
           iconElementLeft={
             <span style={{display:this.props.isMobile?"block":"none"}}>
 
-            <IconButton tooltip="Menu" tooltipStyles={{fontSize:20}}>
+            <IconButton tooltip={this.props.isMobile?null:"Menu"} tooltipStyles={{fontSize:20}}>
               <Menu color={white} />
             </IconButton>
             </span>
@@ -57,7 +57,7 @@ class Sidebar extends Component {
             this.props.opened ? this.props.closeDrawer : this.props.openDrawer
           }
         />
-        <Drawer open={this.props.opened} docked={true} style={{position: "fixed"}}>
+      <Drawer open={this.props.opened} docked={true} style={{position: "fixed"}}>
           <Sidebar />
         </Drawer>
       </div>

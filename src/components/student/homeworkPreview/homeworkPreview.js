@@ -17,6 +17,7 @@ class HomeworkPreview extends Component {
       worktime:0,
       send:false
     }
+    console.log(this.props.homework);
   }
   componentWillMount(){
     this.props.setNavTitle("Homework preview");
